@@ -67,6 +67,8 @@ class Teacher implements Runnable {
 
 class SimpleGradeBook {
     public static void main(String[] args) throws InterruptedException {
+        long startTime = System.nanoTime();
+
         List<Student> students = List.of(
                 new Student("Alice"), new Student("Bob"), new Student("Charlie"));
 
@@ -80,5 +82,9 @@ class SimpleGradeBook {
         executor.awaitTermination(1, TimeUnit.MINUTES);
 
         students.forEach(System.out::println);
+
+        long endTime = System.nanoTime();
+        long durationInMilliseconds = (endTime - startTime) / 1_000_000;
+        System.out.println("Execution time: " + durationInMilliseconds + " ms");
     }
 }

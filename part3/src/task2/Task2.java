@@ -66,6 +66,8 @@ class GradeAssignment extends RecursiveAction {
 
 class SimpleGradeBook {
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
+
         List<Student> students = List.of(new Student("Alice"), new Student("Bob"), new Student("Charlie"));
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
@@ -75,6 +77,10 @@ class SimpleGradeBook {
         forkJoinPool.invoke(task);
 
         students.forEach(System.out::println);
+
+        long endTime = System.nanoTime();
+        long durationInMilliseconds = (endTime - startTime) / 1_000_000;
+        System.out.println("Execution time: " + durationInMilliseconds + " ms");
 
         forkJoinPool.shutdown();
     }
