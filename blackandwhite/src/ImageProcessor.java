@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class ImageProcessor {
     private static final String INPUT_FOLDER = "./resources/";
     private static final String OUTPUT_FOLDER = "./out/";
-    private static final boolean isParallel = true;
-    private static final int segments = 2;
+    private static final boolean isParallel = false;
+    private static final int segments = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
         long startTime = System.currentTimeMillis();
@@ -21,7 +21,7 @@ public class ImageProcessor {
             List<File> images = paths.map(java.nio.file.Path::toFile)
                     .collect(Collectors.toList());
 
-            int concurrentImages = 9;
+            int concurrentImages = 20;
 
             if (isParallel) {
                 processImagesInParallel(images, concurrentImages, segments);
